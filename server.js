@@ -31,6 +31,7 @@ app.delete('/api/purchases/:id', db.deletePurchase);
 
 //Purchase_items
 app.get('/api/purchase_items/',db.getAllpurchase_items);
+app.get('/api/purchase_items/:id',db.getpurchase_itemByID);
 
 //failed
 app.get('/api/json', function (req, res) {

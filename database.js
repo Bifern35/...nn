@@ -257,18 +257,18 @@ function getAllpurchase_items(req, res) {
             res.status(500)
                 .json({
                     status: 'failed',
-                    message: 'Failed to retrieved purchases'
+                    message: 'Failed to retrieved purchase_items'
                 });
         })
 }
-function getPurchaseByID(req, res) {
-    db.any('select * from purchases where id =' + req.params.id)
+function getpurchase_itemByID(req, res) {
+    db.any('select * from purchase_items where id =' + req.params.id)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retrieved purchase id:' + req.params.id
+                    message: 'Retrieved purchase purchase_item id:' + req.params.id
                 });
         })
         .catch(function (error) {
@@ -337,5 +337,6 @@ module.exports = {
     insertPurchase,
     updatePurchase,
     deletePurchase,
-    getAllpurchase_items
+    getAllpurchase_items,
+    getpurchase_itemByID
 }
