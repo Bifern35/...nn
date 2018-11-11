@@ -24,7 +24,10 @@ app.put('/api/users/:id', db.updateUser);
 app.delete('/api/users/:id', db.deleteUser);
 //Purchases
 app.get('/api/purchases/',db.getAllPurchases);
-app.get('/api/users/:id',db.getPurchaseByID);
+app.get('/api/purchases/:id',db.getPurchaseByID);
+app.post('/api/purchases/', db.insertPurchase);
+app.put('/api/purchases/:id', db.updatePurchase);
+
 //failed
 app.get('/api/json', function (req, res) {
     res.status(500).json({

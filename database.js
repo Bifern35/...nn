@@ -183,7 +183,7 @@ function getAllPurchases(req, res) {
         })
 }
 function getPurchaseByID(req, res) {
-    db.any('select * from purchase where id =' + req.params.id)
+    db.any('select * from purchases where id =' + req.params.id)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -201,9 +201,9 @@ function getPurchaseByID(req, res) {
                 });
         })
 }
-function insertUser(req, res) {
-    db.none('insert into users(id, email, password, details, created_at)' +
-        'values(${id}, ${email}, ${password}, ${details}, ${created_at})', req.body)
+function insertPurchase(req, res) {
+    db.none('insert into purchases(id, created_at, name, address, state, zipcode, user_id)' +
+        'values(${id}, ${created_at}, ${name}, ${address}, ${state}, ${zipcode}, ${user_id})', req.body)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -215,8 +215,8 @@ function insertUser(req, res) {
             console.log('ERROR:', error)
         })
 }
-function updateUser(req, res) {
-    db.none('update users set email = ${email} , password= ${password} , details= ${details} where id ='+ req.params.id , req.body)
+function updatePurchase(req, res) {
+    db.none('update purchases set name = ${name} , address= ${address} , state= ${state}, zipcode= ${zipcode}, zipcode= ${zipcode} , user_id= ${user_id} where id ='+ req.params.id , req.body)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -254,5 +254,7 @@ module.exports = {
     updateUser,
     deleteUser,
     getAllPurchases,
-    getPurchaseByID
+    getPurchaseByID,
+    insertPurchase,
+    updatePurchase
 }
