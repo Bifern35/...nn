@@ -27,6 +27,7 @@ app.get('/api/purchases/',db.getAllPurchases);
 app.get('/api/purchases/:id',db.getPurchaseByID);
 app.post('/api/purchases/', db.insertPurchase);
 app.put('/api/purchases/:id', db.updatePurchase);
+app.delete('/api/purchases/:id', db.deletePurchase);
 
 //failed
 app.get('/api/json', function (req, res) {

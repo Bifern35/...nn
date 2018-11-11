@@ -208,7 +208,7 @@ function insertPurchase(req, res) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Inserted one user'
+                    message: 'Inserted one purchase'
                 });
         })
         .catch(function (error) {
@@ -221,20 +221,20 @@ function updatePurchase(req, res) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Update one user'
+                    message: 'Update one purchase'
                 });
         })
         .catch(function (error) {
             console.log('ERROR:', error)
         })
 }
-function deleteUser(req, res) {
-    db.none('delete from users where id ='+ req.params.id , req.body)
+function deletePurchase(req, res) {
+    db.none('delete from purchases where id ='+ req.params.id , req.body)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Delete one user'
+                    message: 'Delete one purchase'
                 });
         })
         .catch(function (error) {
@@ -256,5 +256,6 @@ module.exports = {
     getAllPurchases,
     getPurchaseByID,
     insertPurchase,
-    updatePurchase
+    updatePurchase,
+    deletePurchase
 }
