@@ -276,18 +276,18 @@ function getpurchase_itemByID(req, res) {
             res.status(500)
                 .json({
                     status: 'failed',
-                    message: 'Failed to retrieved purchase id:' + req.params.id
+                    message: 'Failed to retrieved purchase_item id:' + req.params.id
                 });
         })
 }
-function insertPurchase(req, res) {
-    db.none('insert into purchases(id, created_at, name, address, state, zipcode, user_id)' +
-        'values(${id}, ${created_at}, ${name}, ${address}, ${state}, ${zipcode}, ${user_id})', req.body)
+function insertpurchase_item(req, res) {
+    db.none('insert into purchase_items(id, purchase_id, product_id, price, quantity, state)' +
+        'values(${id}, ${purchase_id}, ${product_id}, ${price}, ${quantity}, ${state})', req.body)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Inserted one purchase'
+                    message: 'Inserted one purchase_item'
                 });
         })
         .catch(function (error) {
@@ -338,5 +338,6 @@ module.exports = {
     updatePurchase,
     deletePurchase,
     getAllpurchase_items,
-    getpurchase_itemByID
+    getpurchase_itemByID,
+    insertpurchase_item
 }
