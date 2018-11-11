@@ -122,6 +122,20 @@ function getUserByID(req, res) {
                 });
         })
 }
+function insertUser(req, res) {
+    db.none('insert into users(id, email, password, details, created_at)' +
+        'values(${id}, ${email}, ${password}, ${details}, ${created_at})', req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one product'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
 //set function public
 module.exports = {
     getAllProducts,
@@ -130,6 +144,6 @@ module.exports = {
     updateProduct,
     deleteProduct,
     getAllUsers,
-    getUserByID
-    
+    getUserByID,
+    insertUser
 }

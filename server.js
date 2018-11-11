@@ -17,8 +17,9 @@ app.post('/api/products/', db.insertProduct);
 app.put('/api/products/:id', db.updateProduct);
 app.delete('/api/products/:id', db.deleteProduct);
 //Users
-app.get('/api/products/',db.getAllUsers);
-app.get('/api/products/:id',db.getUserByID);
+app.get('/api/users/',db.getAllUsers);
+app.get('/api/users/:id',db.getUserByID);
+app.post('/api/users/', db.insertUser);
 //failed
 app.get('/api/json', function (req, res) {
     res.status(500).json({
