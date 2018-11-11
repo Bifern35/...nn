@@ -20,6 +20,11 @@ app.delete('/api/products/:id', db.deleteProduct);
 app.get('/api/users/',db.getAllUsers);
 app.get('/api/users/:id',db.getUserByID);
 app.post('/api/users/', db.insertUser);
+app.put('/api/users/:id', db.updateUser);
+app.delete('/api/users/:id', db.deleteUser);
+//Purchases
+app.get('/api/purchases/',db.getAllPurchases);
+app.get('/api/users/:id',db.getPurchaseByID);
 //failed
 app.get('/api/json', function (req, res) {
     res.status(500).json({

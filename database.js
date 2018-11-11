@@ -69,7 +69,6 @@ function updateProduct(req, res) {
             console.log('ERROR:', error)
         })
 }
-
 function deleteProduct(req, res) {
     db.none('delete from products where id ='+ req.params.id , req.body)
         .then(function (data) {
@@ -129,7 +128,113 @@ function insertUser(req, res) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Inserted one product'
+                    message: 'Inserted one user'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+function updateUser(req, res) {
+    db.none('update users set email = ${email} , password= ${password} , details= ${details} where id ='+ req.params.id , req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Update one user'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+function deleteUser(req, res) {
+    db.none('delete from users where id ='+ req.params.id , req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Delete one user'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+
+//CRUD Purchases
+function getAllPurchases(req, res) {
+    db.any('select * from purchases')
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved ALL purchasess'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved purchases'
+                });
+        })
+}
+function getPurchaseByID(req, res) {
+    db.any('select * from purchase where id =' + req.params.id)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved purchase id:' + req.params.id
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved purchase id:' + req.params.id
+                });
+        })
+}
+function insertUser(req, res) {
+    db.none('insert into users(id, email, password, details, created_at)' +
+        'values(${id}, ${email}, ${password}, ${details}, ${created_at})', req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one user'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+function updateUser(req, res) {
+    db.none('update users set email = ${email} , password= ${password} , details= ${details} where id ='+ req.params.id , req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Update one user'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+function deleteUser(req, res) {
+    db.none('delete from users where id ='+ req.params.id , req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Delete one user'
                 });
         })
         .catch(function (error) {
@@ -145,5 +250,9 @@ module.exports = {
     deleteProduct,
     getAllUsers,
     getUserByID,
-    insertUser
+    insertUser,
+    updateUser,
+    deleteUser,
+    getAllPurchases,
+    getPurchaseByID
 }
