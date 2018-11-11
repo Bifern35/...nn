@@ -307,13 +307,13 @@ function updatepurchase_item(req, res) {
             console.log('ERROR:', error)
         })
 }
-function deletePurchase(req, res) {
-    db.none('delete from purchases where id ='+ req.params.id , req.body)
+function deletePurchase_item(req, res) {
+    db.none('delete from purchase_items where id ='+ req.params.id , req.body)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Delete one purchase'
+                    message: 'Delete one purchase_item'
                 });
         })
         .catch(function (error) {
@@ -340,5 +340,6 @@ module.exports = {
     getAllpurchase_items,
     getpurchase_itemByID,
     insertpurchase_item,
-    updatepurchase_item
+    updatepurchase_item,
+    deletePurchase_item
 }
