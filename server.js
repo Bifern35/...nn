@@ -13,31 +13,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// add routing
-// index page
-// app.get('/', function (req, res) {
-//     res.send('Express is running');
-// });
-
 app.get('/api/products/',db.getAllProducts);
 app.get('/api/products/:id',db.getProductByID);
 app.post('/api/products/', db.insertProduct);
 app.put('/api/products/:id', db.updateProduct);
 app.delete('/api/products/:id', db.deleteProduct);
-// Response data as JSON
-// var output = {
-//     status: 'success',
-//     message: 'REST API is working'
-// }
-// app.get('/api/json', function (req, res) {
-//     res.json(output);
-// });
 
-//Response data as JSON with Status Code
-//sucess
-// app.get('/api/json', function (req, res) {
-//     res.status(200).json(output);
-// });
 //failed
 app.get('/api/json', function (req, res) {
     res.status(500).json({
