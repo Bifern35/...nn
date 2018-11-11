@@ -2,6 +2,7 @@
 const pgp = require('pg-promise')();
 var db = pgp('postgres://qkdqxkxpilzsab:5e52ceaf831ad64674c9906b4f631d0af31c60f7d8421492681e5f84a1c705e7@ec2-107-20-249-48.compute-1.amazonaws.com:5432/dc9ptjn5vp80vf?ssl=true');
 
+//CRUD Product
 function getAllProducts(req, res) {
     db.any('select * from products')
         .then(function (data) {
@@ -82,11 +83,53 @@ function deleteProduct(req, res) {
             console.log('ERROR:', error)
         })
 }
+//CRUD User
+function getAllUsers(req, res) {
+    db.any('select * from users')
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved ALL users'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved users'
+                });
+        })
+}
+function getUserByID(req, res) {
+    db.any('select * from users where id =' + req.params.id)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved users id:' + req.params.id
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved users id:' + req.params.id
+                });
+        })
+}
 //set function public
 module.exports = {
     getAllProducts,
     getProductByID,
     insertProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getAllUsers,
+    getUserByID
+    
 }
