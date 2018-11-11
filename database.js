@@ -294,13 +294,13 @@ function insertpurchase_item(req, res) {
             console.log('ERROR:', error)
         })
 }
-function updatePurchase(req, res) {
-    db.none('update purchases set name = ${name} , address= ${address} , state= ${state}, zipcode= ${zipcode}, zipcode= ${zipcode} , user_id= ${user_id} where id ='+ req.params.id , req.body)
+function updatepurchase_item(req, res) {
+    db.none('update purchase_items set purchase_id = ${purchase_id} , product_id= ${product_id} , price= ${price}, quantity= ${quantity}, state= ${state} where id ='+ req.params.id , req.body)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Update one purchase'
+                    message: 'Update one purchase_item'
                 });
         })
         .catch(function (error) {
@@ -339,5 +339,6 @@ module.exports = {
     deletePurchase,
     getAllpurchase_items,
     getpurchase_itemByID,
-    insertpurchase_item
+    insertpurchase_item,
+    updatepurchase_item
 }

@@ -32,7 +32,7 @@ app.delete('/api/purchases/:id', db.deletePurchase);
 //Purchase_items
 app.get('/api/purchase_items/',db.getAllpurchase_items);
 app.get('/api/purchase_items/:id',db.getpurchase_itemByID);
-
+app.post('/api/purchase_items/', db.insertpurchase_item);
 //failed
 app.get('/api/json', function (req, res) {
     res.status(500).json({
